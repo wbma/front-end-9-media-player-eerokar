@@ -11,6 +11,7 @@ import {LoginPage} from "../pages/login/login";
 import {UploadPage} from "../pages/upload/upload";
 import {FrontPage} from "../pages/front/front";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import {PipesModule} from "./pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
 
   ],
   bootstrap: [IonicApp],

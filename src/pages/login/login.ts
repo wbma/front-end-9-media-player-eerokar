@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FrontPage} from "../front/front";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {MediaProvider} from "../../providers/media/media";
+import {User} from "../../app/interfaces/user";
 
 /**
  * Generated class for the LoginPage page.
@@ -17,6 +18,8 @@ import {MediaProvider} from "../../providers/media/media";
   templateUrl: 'login.html',
 })
 export class LoginPage {
+
+  public userInfo: User;
 
   frontPage = FrontPage;
 
@@ -62,13 +65,14 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  tokenCheck() {
-    this.mediaProvider.getUserData().subscribe(response => {
-      console.log('Welcome ' + response['full_name']);
+  /*tokenCheck() {
+    this.mediaProvider.getUserData().subscribe((response: User) => {
+      this.userInfo = response;
+      console.log('Welcome ' + this.userInfo.username);
     }, (error: HttpErrorResponse) => {
       console.log(error);
       this.navCtrl.setRoot(LoginPage);
     });
-  }
+  }*/
 
 }

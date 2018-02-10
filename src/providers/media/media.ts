@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import {NavController} from "ionic-angular";
 import {FrontPage} from "../../pages/front/front";
+import {User} from "../../app/interfaces/user";
 
 /*
   Generated class for the MediaProvider provider.
@@ -11,6 +12,8 @@ import {FrontPage} from "../../pages/front/front";
 */
 @Injectable()
 export class MediaProvider {
+
+  userInfo: User;
 
   username: string;
   password: string;
@@ -39,6 +42,16 @@ export class MediaProvider {
 
   }
 
+  getImages(fromIndex: string) {
+
+    return this.http.get(this.apiUrl + '/media', {
+      params: {
+        start: fromIndex,
+        limit: '10'
+      }
+    });
+  }
+
   register(user) {
     return this.http.post(this.apiUrl + '/users', user);
   }
@@ -50,10 +63,17 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/media', formData, settings);
   }
 
-  getUserData() {
+  getUserData(token) {
     const settings = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+      headers: new HttpHeaders().set('x-access-token', token)
     };
-    return this.http.get(this.apiUrl + '/users/user', settings);
+    return this.http.get(this.apiUrl + '/users/user', settings)
   }
+
+  userHasToken() {
+    return localStorage.getItem('token');
+  }
+
 }
+
+
