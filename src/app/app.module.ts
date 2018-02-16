@@ -12,6 +12,8 @@ import {UploadPage} from "../pages/upload/upload";
 import {FrontPage} from "../pages/front/front";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {PipesModule} from "./pipes/pipes.module";
+import {ViewMediaPage} from "../pages/view-media/view-media";
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {PipesModule} from "./pipes/pipes.module";
     HomePage,
     LoginPage,
     UploadPage,
-    FrontPage
+    FrontPage,
+    ViewMediaPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {PipesModule} from "./pipes/pipes.module";
     HomePage,
     LoginPage,
     UploadPage,
-    FrontPage
+    FrontPage,
+    ViewMediaPage
   ],
   providers: [
     StatusBar,

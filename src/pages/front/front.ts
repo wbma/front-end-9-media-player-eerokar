@@ -5,6 +5,7 @@ import {User} from "../../app/interfaces/user";
 import {MediaProvider} from "../../providers/media/media";
 import {HttpErrorResponse} from "@angular/common/http";
 import {LoginPage} from "../login/login";
+import {ViewMediaPage} from "../view-media/view-media";
 
 /**
  * Generated class for the FrontPage page.
@@ -21,6 +22,8 @@ import {LoginPage} from "../login/login";
 export class FrontPage implements OnInit{
   uploadPage = UploadPage;
 
+  viewMediaPage = ViewMediaPage;
+
   userInfo: User;
 
   newestImages: any;
@@ -28,6 +31,12 @@ export class FrontPage implements OnInit{
   picIndex = 0;
 
   constructor(public mediaProvider: MediaProvider, public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  openSingle(id) {
+    this.navCtrl.push(this.viewMediaPage, {
+      mediaID: id,
+    });
   }
 
   ngOnInit() {

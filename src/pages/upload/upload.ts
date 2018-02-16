@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {MediaProvider} from "../../providers/media/media";
 import {Media} from "../../app/interfaces/media";
@@ -12,7 +11,7 @@ import {NavController} from "ionic-angular";
 
 
 })
-export class UploadPage implements OnInit {
+export class UploadPage {
 
   file: File;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
@@ -46,8 +45,6 @@ export class UploadPage implements OnInit {
     }, (error: HttpErrorResponse) => {
       console.log(error.error.message);
     });
-  }
-  ngOnInit() {
   }
 
 }

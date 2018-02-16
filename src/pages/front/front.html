@@ -5,21 +5,38 @@
 </ion-header>
 <ion-content padding>
   <ion-card-content>
-    <button [navPush]="uploadPage">Upload</button>
-
-       <h4> Newest pics </h4>
+    <button ion-button [navPush]="uploadPage">Upload</button>
+    <br>
+     <h4> Newest pics </h4>
        <div class="cardContainer">
-         <div class="imageCard" *ngFor="let image of newestImages">
-           <img [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (image.filename| thumbnail: 'large')"/>
-           <h5> {{ image.title }} </h5>
-           <p> {{ image.description }} </p>
+         <div class="imageCard" *ngFor="let media of newestImages">
+
+
+           <!-- <img [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (media.filename| thumbnail: 'large')"/>
+           <h5> {{ media.title }} </h5>
+           <p> {{ media.description }} </p> -->
+
+
+           <ion-icon *ngIf="media.media_type == 'image'" name="md-photos"></ion-icon>
+           <ion-icon *ngIf="media.media_type == 'video'" name="videocam"></ion-icon>
+           <ion-icon *ngIf="media.media_type == 'audio'" name="volume-up"></ion-icon>
+           <img *ngIf="media.media_type == 'image'" class="card-img-top"
+                [src]="mediaProvider.mediaUrl + (media.filename | thumbnail:'medium')"
+                [alt]="media.title" (click)="openSingle(media.file_id)">
+           <video *ngIf="media.media_type == 'video'" class="card-img-top"
+                  [src]="mediaProvider.mediaUrl + media.filename"
+                  controls [poster]="mediaProvider.mediaUrl + (media.filename | thumbnail:'medium')"></video>
+           <audio *ngIf="media.media_type == 'audio'" class="card-img-top"
+                  [src]="mediaProvider.mediaUrl + media.filename"
+                  controls></audio>
 
 
         </div>
         <div class="buttonContainer">
           <button (click)="loadMore()"> More images </button>
         </div>
-      </div>
+       </div>
+
 
 
 

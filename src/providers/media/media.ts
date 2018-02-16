@@ -23,6 +23,7 @@ export class MediaProvider {
   mediaDescription: string;
 
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
+  mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
   constructor(public http: HttpClient) {}
   public login() {
@@ -68,6 +69,21 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token', token)
     };
     return this.http.get(this.apiUrl + '/users/user', settings)
+  }
+
+  getUserViaId(id) {
+    const settings = {
+      headers: new HttpHeaders().set('user_id', id)
+    };
+    return this.http.get(this.apiUrl + '/users/user', settings)
+  }
+
+  getSingleMedia(id) {
+    return this.http.get<Array<string>>(this.apiUrl + '/media/' + id);
+  }
+
+  getTagByFile(id) {
+    return this.http.get<Array<object>>(this.apiUrl + '/tags/file/' + id);
   }
 
   userHasToken() {
